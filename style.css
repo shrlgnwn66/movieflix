@@ -34,6 +34,7 @@ header {
   height: 400px;
   box-shadow: 0 4px 5px rgba(0, 0, 0, 0.2);
   padding: 16px;
+  font-weight: 300;
 }
 
 .movie img {
@@ -42,9 +43,13 @@ header {
   object-fit: cover;
 }
 
+.movie h3 {
+  padding-bottom: 4px;
+}
+
 .movie .rating {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  margin-top: 24px;
+  padding: 16px 0;
 }

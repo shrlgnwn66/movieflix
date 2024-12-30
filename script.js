@@ -31,10 +31,10 @@ function showMovies(movies){
             <img src="${API_IMAGE_URL + poster_path}" alt="Movie Image"/>
             <div class="detail">
                 <h3>${title}</h3>
-                <p>${overview.substring(0, 200)}....</p>
+                <p>${overview.substring(0, 200)}...</p>
                 <div class="rating">
                     <h5>${popularity}%</h5>
-                    <h5>⭐${vote_average}</h5>
+                    <h5>⭐ ${vote_average}</h5>
                 </div>
             </div>
         `
