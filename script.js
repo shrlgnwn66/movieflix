@@ -2,28 +2,47 @@ const API_KEY = "461d22ca0f1fbe623a6806624399dcab";
 
 let page = 1;
 
-const API_URL = `https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&page=${page}`
+const API_URL = () => `https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&page=${page}`
 const API_IMAGE_URL = "https://image.tmdb.org/t/p/w1280"
-
+const API_SEARCH_URL = `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&query=`
 async function getMovies(url) {
     const res = await fetch(url)
     const data = await res.json()
     showMovies(data.results)
 }
 
+function updatePage() {
+    getMovies(API_URL())
+    currentPage.innerHTML = page
+}
+
 function nextPage() {
-    page +=1;
+    if (page >= 1) {
+        page +=1;
+        updatePage()
+    }
 }
 
 function prevPage() {
-    page -=1;
+    if (page > 1) {
+        page -=1;
+        updatePage()
+    }
+
 }
+
+next.addEventListener("click", () => {
+    nextPage()
+})
+
+prev.addEventListener("click", () => {
+    prevPage()
+})
 
 function showMovies(movies){
     moviesElement.innerHTML = ''
     movies.forEach(movie => {
         const {title, poster_path, overview, popularity, vote_average} = movie
-        console.log(popularity, vote_average)
         const movieCard = document.createElement("div")
         movieCard.classList.add("movie")
         
@@ -42,5 +61,18 @@ function showMovies(movies){
     });
 }
 
+searchForm.addEventListener("submit", (event) => {
+    event.preventDefault()
+    const searchQuery = search.value
 
-getMovies(API_URL);
+    if(searchQuery !== '') {
+        getMovies(API_SEARCH_URL + searchQuery)
+        search.value = ''
+    }
+})
+
+updatePage()
+
+title.addEventListener("click", () => {
+    location.reload()
+})

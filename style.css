@@ -15,6 +15,13 @@ header {
   justify-content: space-between;
   align-items: center;
   padding: 16px;
+  position: sticky;
+  top: 0;
+}
+
+.title {
+  font-size: x-large;
+  cursor: pointer;
 }
 
 .searchInput {
@@ -52,4 +59,23 @@ header {
   flex-direction: row;
   justify-content: space-between;
   padding: 16px 0;
+}
+
+.pagination {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  align-items: center;
+  padding: 32px 0;
+}
+
+#prev,
+#next {
+  background: rgb(8, 135, 126);
+  border-radius: 8px;
+  color: #ffff;
+  padding: 8px 32px;
+  cursor: pointer;
+  font-size: larger;
+  font-weight: 500;
 }
